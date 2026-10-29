@@ -1,0 +1,39 @@
+{% extends 'blog/base.html' %}
+
+{% block titulo %}{{ post.titulo }} | Projeto Blog Django{% endblock %}
+
+{% block conteudo %}
+
+    <article class="post-detalhe">
+
+        <h2>{{ post.titulo }}</h2>
+
+        <p class="data-post">
+            Publicado em {{ post.criado_em|date:"d/m/Y H:i" }}
+        </p>
+
+        <div class="conteudo-post">
+            {{ post.conteudo|linebreaks }}
+        </div>
+
+        <section class="comentarios">
+
+            <h3>Deixe um comentário</h3>
+
+            <form method="post">
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <button type="submit">Enviar comentário</button>
+            </form>
+
+        </section>
+
+        <a href="/" class="voltar">
+            ← Voltar para o início
+        </a>
+
+    </article>
+
+{% endblock %}

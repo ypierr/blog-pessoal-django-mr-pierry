@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+
+{% block titulo %}Início | Projeto Blog Django{% endblock %}
+
+{% block conteudo %}
+    <section>
+        <h2>Aprendizados da disciplina</h2>
+        <p>Este é o espaço onde vou compartilhar o que estou aprendendo.</p>
+
+       {% for post in posts %}
+    <article>
+        <h3>{{ post.titulo }}</h3>
+
+        <p>
+            {{ post.conteudo|truncatewords:40 }}
+        </p>
+
+        <a href="{% url 'post_detalhe' post.id %}">
+            Ler publicação
+        </a>
+    </article>
+{% endfor %}
+    </section>
+{% endblock %}
